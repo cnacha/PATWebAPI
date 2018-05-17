@@ -63,7 +63,7 @@ namespace PATWebAPI.Controllers
             // generate CSP Code
             VerifyAsset verifyAsset = util.GenerateAsset(matrix);
             int totalAsert = verifyAsset.deadloopCheck.Count + verifyAsset.livelockCheck.Count;
-            System.Diagnostics.Debug.WriteLine("total Assertion" + totalAsert);
+            // System.Diagnostics.Debug.WriteLine("total Assertion" + totalAsert);
 
             //initialize CSP module with CSP Code
             PAT.CSP.ModuleFacade modulebase = new PAT.CSP.ModuleFacade();
