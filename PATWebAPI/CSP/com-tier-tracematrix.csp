@@ -1,0 +1,21 @@
+﻿#define N /**COMPONENTNUMBER**/;
+
+var reqmat[N][N];
+//var resmat[N][N]; 
+var component = [/**COMPONENTLIST**/];
+
+/*****Normal***********/
+Initial() = initialize {  /**MATRIX**/ } -> Start();
+
+
+Request(i) = invoke.component[i] -> RequestNext(i); 
+RequestNext(i) = [] x:{0..(N-1)} @[reqmat[i][x]>=0] request.component[reqmat[i][x]] -> Request(reqmat[i][x]); 
+
+// normal
+Start() = /**START**/;
+
+System() = Initial() ;
+
+/**DEADLOCKCHECK**/
+
+/**LTLCHECK**/
