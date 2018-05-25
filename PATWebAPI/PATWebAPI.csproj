@@ -175,16 +175,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\PATMultiController.cs" />
     <Compile Include="Controllers\PATTestController.cs" />
-    <Compile Include="Controllers\SinglePATController.cs" />
+    <Compile Include="Controllers\ExPATWebController.cs" />
     <Compile Include="Controllers\PATWebController.cs" />
     <Compile Include="Controllers\ThreadTesterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ArchMatrix.cs" />
+    <Compile Include="Models\VerifyResultSet.cs" />
     <Compile Include="Models\AssertionVerifier.cs" />
+    <Compile Include="Models\ArchDesignConfig.cs" />
     <Compile Include="Models\DiagnosisResult.cs" />
+    <Compile Include="Models\ThreadedVerificationExecuter.cs" />
     <Compile Include="Models\ThreadedAssertionExecuter.cs" />
     <Compile Include="Models\ThreadedExecuter.cs" />
     <Compile Include="Models\VerifyResult.cs" />

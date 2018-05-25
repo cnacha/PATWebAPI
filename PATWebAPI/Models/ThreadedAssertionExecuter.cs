@@ -36,6 +36,7 @@ namespace PATWebAPI.Models
         }
         public void executeAssertion(SpecificationBase spec, String assertionName)
         {
+
             AssertionBase assertion = spec.AssertionDatabase[assertionName];
             AssertionVerifier verifier = new AssertionVerifier(assertion, 1, 0);
             T stuffReturned = (T)Convert.ChangeType(verifier.Run(), typeof(T));

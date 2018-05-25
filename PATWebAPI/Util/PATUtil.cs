@@ -24,6 +24,9 @@ namespace PATWebAPI.Util
 
             Dictionary<int, int> compDict = new Dictionary<int, int>();
             // generate csp for component declaration
+            String defaultDeadloopCheck = "System() |= []<> initialize";
+            deadlockAssertList.Add(defaultDeadloopCheck);
+            cspDeadLockCheck.AppendLine("#assert " + defaultDeadloopCheck + ";");
             for (var i = 0; i < matrix.Count; i++)
             {
                 cspComponent.Append(matrix[i].ID);
@@ -71,7 +74,7 @@ namespace PATWebAPI.Util
                     }
                 }
             }
-
+           
 
             string templatePath = System.Web.HttpContext.Current.Request.MapPath("~\\CSP\\com-tier-tracematrix.csp");
 
@@ -89,6 +92,7 @@ namespace PATWebAPI.Util
             asset.CSPCode = cspCode.ToString();
             asset.deadloopCheck = deadlockAssertList;
             asset.livelockCheck = livelockAssertList;
+          //  System.Diagnostics.Debug.WriteLine(asset.CSPCode);
 
             return asset;
         }

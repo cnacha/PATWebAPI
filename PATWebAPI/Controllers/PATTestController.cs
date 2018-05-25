@@ -15,8 +15,8 @@ namespace PATWebAPI.Controllers
     public class PATTestController : ApiController
     {
         [HttpPost]
-        [ActionName("SingleVerify")]
-        public VerifyResult SimpleVerify(List<ArchMatrix> matrix)
+        [ActionName("AsyncVerify")]
+        public VerifyResult AsyncVerify(List<ArchMatrix> matrix)
         {
             PATUtil util = new PATUtil();
             // generate CSP Code
@@ -53,8 +53,8 @@ namespace PATWebAPI.Controllers
         ConcurrentBag<DiagnosisResult> results;
 
         [HttpPost]
-        [ActionName("MultiVerify")]
-        public VerifyResult MultiVerify(List<ArchMatrix> matrix)
+        [ActionName("SyncVerify")]
+        public VerifyResult SyncVerify(List<ArchMatrix> matrix)
         {
             // change this for performance tuning
             int maxConcurrent = 8;
@@ -77,7 +77,11 @@ namespace PATWebAPI.Controllers
             List<ThreadedAssertionExecuter<DiagnosisResult>> threadsList = new List<ThreadedAssertionExecuter<DiagnosisResult>>();
             foreach (String assertionName in verifyAsset.deadloopCheck)
             {
-                threadsList.Add(new ThreadedAssertionExecuter<DiagnosisResult>(callBack, specbase, assertionName));
+                //    System.Diagnostics.Debug.WriteLine("executing " + assertionName);
+                executer = new ThreadedAssertionExecuter<DiagnosisResult>(callBack, specbase, assertionName);
+                threadsList.Add(executer);
+               
+               
             }
             foreach (String assertionName in verifyAsset.livelockCheck)
             {
@@ -88,7 +92,7 @@ namespace PATWebAPI.Controllers
             {
                 int beforeNumResult = results.Count;
                 int num = maxConcurrent;
-                if (i + maxConcurrent > (totalAsert-1))
+                if (i + maxConcurrent > totalAsert)
                     num = totalAsert % maxConcurrent;
                 for(int j=0; j<num; j++)
                 {
@@ -106,7 +110,7 @@ namespace PATWebAPI.Controllers
             VerifyResult verResult = new VerifyResult();
             verResult.elapseTime = sw.ElapsedMilliseconds;
             verResult.diagnosisList = results;
-            System.Diagnostics.Debug.WriteLine("Total Result" + results.Count);
+            System.Diagnostics.Debug.WriteLine("Total Results" + results.Count);
 
             return verResult;
         }

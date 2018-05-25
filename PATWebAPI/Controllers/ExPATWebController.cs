@@ -15,7 +15,7 @@ using PATWebAPI.Models;
 
 namespace PATWebAPI.Controllers
 {
-    public class SinglePATController : ApiController
+    public class ExPATWebController : ApiController
     {
         [HttpPost]
         [ActionName("Verify")]

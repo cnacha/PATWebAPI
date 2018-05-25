@@ -25,25 +25,26 @@ namespace PATWebAPI.Models
         //engineIndex 0 for Depth First Search, 1 for Breadth First Search
         public DiagnosisResult Run()
         {
-          //  System.Diagnostics.Debug.WriteLine(assertion);
+           // System.Diagnostics.Debug.WriteLine("running "+assertion);
             // return CreatedAtRoute("GetProduct", new { id = item.Id }, item);
             assertion.UIInitialize(null, fairnessIndex, engineIndex);
 
             assertion.VerificationMode = true;
             assertion.InternalStart();
 
-        //    System.Diagnostics.Debug.WriteLine(assertion.GetVerificationStatistics());
+            assertion.GetVerificationStatistics();
             DiagnosisResult result = new DiagnosisResult();
             result.Assertion = assertion.ToString();
 
-           // System.Diagnostics.Debug.WriteLine("VALID? " + assertion.VerificationOutput.VerificationResult.Equals(VerificationResultType.VALID));
+         //   System.Diagnostics.Debug.WriteLine("VALID? " + assertion.VerificationOutput.VerificationResult.Equals(VerificationResultType.VALID));
             string scenarioDesc = "";
-           // System.Diagnostics.Debug.WriteLine("loop: " + assertion.VerificationOutput.LoopIndex);
+        //    System.Diagnostics.Debug.WriteLine("loop: " + assertion.VerificationOutput.LoopIndex);
 
             result.MemoryUsage = assertion.VerificationOutput.EstimateMemoryUsage;
             result.TotalTime = assertion.VerificationOutput.VerificationTime;
             result.NumberOfStates = assertion.VerificationOutput.NoOfStates;
             result.LoopIndex = assertion.VerificationOutput.LoopIndex;
+         //   System.Diagnostics.Debug.WriteLine("==totaltime: " + assertion.VerificationOutput.VerificationTime);
 
             if (assertion.VerificationOutput.VerificationResult.Equals(VerificationResultType.VALID))
             {
@@ -60,7 +61,7 @@ namespace PATWebAPI.Models
                     scenarioDesc += " " + step.GetDisplayEvent();
                 }
                 result.Scenario = scenarioDesc;
-           //     System.Diagnostics.Debug.WriteLine(scenarioDesc);
+         //       System.Diagnostics.Debug.WriteLine(scenarioDesc);
             }
 
             // determine symthomp
