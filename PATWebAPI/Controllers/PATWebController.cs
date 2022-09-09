@@ -19,10 +19,15 @@ namespace PATWebAPI.Controllers
     {
         ConcurrentBag<DiagnosisResult> asrtResults;
 
+
+
         [HttpPost]
         [ActionName("Verify")]
-        public ConcurrentBag<DiagnosisResult> Verify(List<ArchMatrix> matrix)
+        public ConcurrentBag<DiagnosisResult> Verify(ArchDesignConfig  arch)
         {
+            System.Diagnostics.Debug.WriteLine("processing "+arch.name);
+            System.Diagnostics.Debug.WriteLine("ltl " + arch.ltl);
+            List<ArchMatrix> matrix = arch.matrix;
             List<int> startCompList = new List<int>();
             foreach(ArchMatrix comp in matrix)
             {

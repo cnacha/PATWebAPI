@@ -9,5 +9,7 @@ namespace PATWebAPI.Models
     {
         public String name { get; set; }
         public List<ArchMatrix> matrix { get; set; }
+
+        public String ltl { get; set; }
     }
 }

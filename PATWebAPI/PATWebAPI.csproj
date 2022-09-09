@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PATWebAPI</RootNamespace>
     <AssemblyName>PATWebAPI</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -178,7 +179,7 @@
     <Compile Include="Controllers\PATMultiController.cs" />
     <Compile Include="Controllers\PATTestController.cs" />
     <Compile Include="Controllers\ExPATWebController.cs" />
-    <Compile Include="Controllers\PATWebController.cs" />
+    <Compile Include="Controllers\PATWebLTLController.cs" />
     <Compile Include="Controllers\ThreadTesterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

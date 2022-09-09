@@ -9,9 +9,7 @@ namespace PATWebAPI.Models
     public class DiagnosisResult
     {
         public string Symptom { get; set; }
-        [JsonIgnore]
         public string Assertion { get; set; }
-        [JsonIgnore]
         public bool IsValid { get; set; }
         public string Scenario { get; set; }
         public int LoopIndex { get; set; }
